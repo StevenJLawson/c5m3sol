@@ -1,0 +1,7 @@
+<span>List below</span>
+<ol>
+  <li ng-repeat="item in itemsFound.foundItems">
+    {{ item.name }}
+    <button ng-click="itemsFound.removeIt($index);">Remove Item</button>
+  </li>
+</ol>
