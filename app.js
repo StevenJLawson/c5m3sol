@@ -33,8 +33,8 @@ function FoundItemsDirectiveController(){
 }
 
 
-NarrowItDownController.$inject = ['MenuSearchService'];
-function NarrowItDownController(MenuSearchService) {
+NarrowItDownController.$inject = ['$scope', '$element','MenuSearchService'];
+function NarrowItDownController($scope, $element,MenuSearchService) {
   var $narrow = this;
 
  $narrow.searchTerm = '';
@@ -43,8 +43,11 @@ function NarrowItDownController(MenuSearchService) {
    console.log("searching for "+searchTerm);
    if(searchTerm === ''){
       $narrow.foundItems = [];
-
+      var warningElem = $element.find('div.error');
+              warningElem.slideDown(200);
    }else{
+     var warningElem = $element.find('div.error');
+        warningElem.slideUp(200);
      var promise = MenuSearchService.getMatchedMenuItems(searchTerm);
      promise.then(function (response){
        $narrow.foundItems = response;
